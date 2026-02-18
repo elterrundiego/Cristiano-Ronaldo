@@ -194,6 +194,61 @@
             }
         }
 
+        .gallery-section {
+            margin: 2rem 0;
+        }
+
+        .gallery-section h2 {
+            color: #d4af37;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-item-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            color: #d4af37;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .gallery-item:hover .gallery-item-caption {
+            transform: translateY(0);
+        }
+
         footer {
             background-color: #1a1a1a;
             text-align: center;
@@ -239,6 +294,7 @@
     <nav>
         <a href="#biografia">Biografia</a>
         <a href="#personalita">Personalità</a>
+        <a href="#galleria">Galleria</a>
         <a href="#statistiche">Statistiche</a>
         <a href="#trofei">Trofei</a>
         <a href="#carrera">Carriera</a>
@@ -300,6 +356,56 @@
                 <div class="personality-card">
                     <h4>🌍 Impatto Globale</h4>
                     <p>Cristiano non è solo un calciatore, è un'icona. Milioni lo seguono, lo imitano, credono in lui. Ha fatto sentire ai ragazzi dell'Africa, dell'Asia, dell'America Latina che tutto è possibile se ti impegni abbastanza.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="galleria" class="gallery-section">
+            <h2>🖼️ La Leggenda in Immagini</h2>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Cristiano_Ronaldo_2018.jpg/1024px-Cristiano_Ronaldo_2018.jpg" alt="Cristiano Ronaldo">
+                    <div class="gallery-item-caption">Il Re di Madrid - Real Madrid</div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Cristiano_Ronaldo_2019_by_Glenn_Arthur.jpg/1024px-Cristiano_Ronaldo_2019_by_Glenn_Arthur.jpg" alt="Cristiano con la Juventus">
+                    <div class="gallery-item-caption">Vittoria in Serie A - Juventus</div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Cristiano_Ronaldo_with_Portugal_Euro_2016.jpg/1024px-Cristiano_Ronaldo_with_Portugal_Euro_2016.jpg" alt="Cristiano con il Portogallo">
+                    <div class="gallery-item-caption">Campione di Euro 2016 - Portogallo</div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Cristiano_Ronaldo_2008.jpg/1024px-Cristiano_Ronaldo_2008.jpg" alt="Manchester United">
+                    <div class="gallery-item-caption">Inizio della Leggenda - Manchester United</div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Cristiano_Ronaldo_-_Portugal_vs._Sweden%2C_11_November_2013_%285%29.jpg/1024px-Cristiano_Ronaldo_-_Portugal_vs._Sweden%2C_11_November_2013_%285%29.jpg" alt="Acrobazia di Cristiano">
+                    <div class="gallery-item-caption">La Spettacolare Acrobazia - Il Suo Stile</div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Real_Madrid_vs_Juventus_-_2017_%281%29.jpg/1024px-Real_Madrid_vs_Juventus_-_2017_%281%29.jpg" alt="Champions League">
+                    <div class="gallery-item-caption">Dominio Europeo - Champions League</div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Cristiano_Ronaldo_Ballon_d%27Or_2017.jpg/1024px-Cristiano_Ronaldo_Ballon_d%27Or_2017.jpg" alt="Pallone d'Oro">
+                    <div class="gallery-item-caption">Pallone d'Oro - Riconoscimento Mondiale</div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cristiano_Ronaldo_2021_by_Glenn_Arthur.jpg/1024px-Cristiano_Ronaldo_2021_by_Glenn_Arthur.jpg" alt="Manchester United ritorno">
+                    <div class="gallery-item-caption">Il Ritorno - Finale di Carriera</div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Portugal_Euro_2016_celebration.jpg/1024px-Portugal_Euro_2016_celebration.jpg" alt="Vittoria Euro 2016">
+                    <div class="gallery-item-caption">Festa Nazionale - Euro 2016 Vittoria</div>
                 </div>
             </div>
         </section>
