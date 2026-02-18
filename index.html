@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cristiano Ronaldo - Leggenda del Calcio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #fff;
+        }
+
+        header {
+            background: linear-gradient(135deg, #d4af37 0%, #f4e4a6 100%);
+            color: #000;
+            text-align: center;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        nav {
+            background-color: #1a1a1a;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav a {
+            color: #d4af37;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #f4e4a6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .bio-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin: 2rem 0;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #d4af37;
+        }
+
+        .bio-section img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .bio-section h2 {
+            color: #d4af37;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #d4af37 0%, #f4e4a6 100%);
+            color: #000;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            font-size: 0.9rem;
+        }
+
+        .achievements {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #d4af37;
+            margin: 2rem 0;
+        }
+
+        .achievements h2 {
+            color: #d4af37;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .achievements ul {
+            list-style: none;
+            columns: 2;
+            gap: 2rem;
+        }
+
+        .achievements li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .achievements li:before {
+            content: "⭐";
+            position: absolute;
+            left: 0;
+            color: #d4af37;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            text-align: center;
+            padding: 2rem;
+            border-top: 3px solid #d4af37;
+            margin-top: 2rem;
+        }
+
+        footer p {
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .bio-section {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .achievements ul {
+                columns: 1;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav a {
+                display: block;
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🔴 CRISTIANO RONALDO 🔴</h1>
+        <p>La Leggenda del Calcio Moderno</p>
+    </header>
+
+    <nav>
+        <a href="#biografia">Biografia</a>
+        <a href="#statistiche">Statistiche</a>
+        <a href="#trofei">Trofei</a>
+        <a href="#carrera">Carriera</a>
+    </nav>
+
+    <div class="container">
+        <section id="biografia" class="bio-section">
+            <div>
+                <h2>Chi è Cristiano Ronaldo?</h2>
+                <p>Cristiano Ronaldo dos Santos Aveiro, nato il 5 febbraio 1985 a Funchal, Madeira, è considerato uno dei migliori calciatori di tutti i tempi. Con una carriera straordinaria che ha attraversato i club più prestigiosi del mondo, ha dimostrato un'eccezionale dedizione, talento e determinazione.</p>
+                <p>Noto per la sua potenza atletica, velocità devastante, abilità di tiro e capacità di eseguire acrobazie aeree spettacolari, Ronaldo ha lasciato un segno indelebile nel calcio mondiale.</p>
+            </div>
+        </section>
+
+        <section id="statistiche">
+            <h2 style="color: #d4af37; text-align: center; font-size: 2.5rem; margin-bottom: 2rem;">Statistiche Leggendarie</h2>
+            <div class="stats">
+                <div class="stat-card">
+                    <h3>+890</h3>
+                    <p>Goal in Carriera</p>
+                </div>
+                <div class="stat-card">
+                    <h3>5</h3>
+                    <p>Palloni d'Oro</p>
+                </div>
+                <div class="stat-card">
+                    <h3>140+</h3>
+                    <p>Gol Internazionali</p>
+                </div>
+                <div class="stat-card">
+                    <h3>192</h3>
+                    <p>Presenze Nazionali</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="trofei" class="achievements">
+            <h2>Trofei e Riconoscimenti</h2>
+            <ul>
+                <li>5 Palloni d'Oro (2008, 2013, 2014, 2016, 2017)</li>
+                <li>7 Titoli di Capocannoniere della Serie A</li>
+                <li>Miglior Giocatore UEFA per 6 volte</li>
+                <li>Campione della UEFA Champions League (3 volte)</li>
+                <li>Campione del Portogallo con la Nazionale</li>
+                <li>Miglior Giocatore Euro 2016</li>
+                <li>Più di 40 Titoli Calcistici</li>
+                <li>Membro della FIFA FIFPro World11 14 volte</li>
+            </ul>
+        </section>
+
+        <section id="carrera">
+            <h2 style="color: #d4af37; text-align: center; font-size: 2.5rem; margin-bottom: 2rem;">Carriera Calcistica</h2>
+            <div class="bio-section">
+                <div>
+                    <h3 style="color: #d4af37; margin-bottom: 1rem;">Club Principali</h3>
+                    <p><strong>Sporting CP (2002-2003)</strong> - Inizio della sua carriera professionistica.</p>
+                    <p><strong>Manchester United (2003-2009)</strong> - 3 Volte Campione Inglese, 1 Champions League.</p>
+                    <p><strong>Real Madrid (2009-2018)</strong> - 2 Volte Campione Spagnolo, 4 Champions League leggendarie.</p>
+                    <p><strong>Juventus (2018-2021)</strong> - 2 Volte Campione Italiano.</p>
+                    <p><strong>Manchester United (2021-2023)</strong> - Ritorno al club che lo ha lanciato.</p>
+                    <p><strong>Al Nassr (2023-Present)</strong> - Nuova avventura in Arabia Saudita.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Cristiano Ronaldo - Pagina Web Dedicata. Celebrando l'eredità di una leggenda.</p>
+        <p>⚽ "Talento è di Dio, sii grato. Talento è praticamente come un dono da giocare con." - Cristiano Ronaldo</p>
+    </footer>
+</body>
+</html>
