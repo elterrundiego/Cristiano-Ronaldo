@@ -11,12 +11,87 @@
             box-sizing: border-box;
         }
 
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 15px #d4af37, 0 0 25px rgba(212, 175, 55, 0.5); }
+            50% { text-shadow: 0 0 25px #d4af37, 0 0 45px #f4e4a6, 0 0 60px rgba(212, 175, 55, 0.3); }
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.85; }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         body {
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
             color: #333;
             background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
             color: #fff;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Particelle di sfondo */
+        body::before {
+            content: '';
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #d4af37, rgba(212, 175, 55, 0)),
+                radial-gradient(2px 2px at 60px 70px, #f4e4a6, rgba(244, 228, 166, 0)),
+                radial-gradient(1px 1px at 50px 50px, #fff, rgba(255, 255, 255, 0)),
+                radial-gradient(1px 1px at 130px 80px, #d4af37, rgba(212, 175, 55, 0)),
+                radial-gradient(2px 2px at 90px 10px, #f4e4a6, rgba(244, 228, 166, 0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 0;
         }
 
         header {
@@ -24,23 +99,33 @@
             color: #000;
             text-align: center;
             padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 0 30px rgba(212, 175, 55, 0.4);
+            animation: slideInDown 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            z-index: 1;
         }
 
         header h1 {
             font-size: 3rem;
             margin-bottom: 0.5rem;
+            animation: glow 3s ease-in-out infinite, float 4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+            font-weight: 900;
+            letter-spacing: 2px;
         }
 
         header p {
             font-size: 1.2rem;
             font-style: italic;
+            animation: slideInDown 1.2s ease-out;
         }
 
         nav {
             background-color: #1a1a1a;
             padding: 1rem;
             text-align: center;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 
         nav a {
@@ -48,17 +133,38 @@
             text-decoration: none;
             margin: 0 1.5rem;
             font-weight: bold;
-            transition: color 0.3s;
+            transition: color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), text-shadow 0.4s ease, transform 0.4s ease;
+            display: inline-block;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #f4e4a6;
+            transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         nav a:hover {
             color: #f4e4a6;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
+            transform: translateY(-4px);
+        }
+
+        nav a:hover::after {
+            width: 100%;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .bio-section {
@@ -71,19 +177,37 @@
             padding: 2rem;
             border-radius: 8px;
             border-left: 4px solid #d4af37;
+            animation: slideInUp 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            backdrop-filter: blur(10px);
+        }
+
+        .bio-section:hover {
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.25);
+            transform: translateY(-8px);
         }
 
         .bio-section img {
             width: 100%;
             max-width: 400px;
             border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35), 0 0 25px rgba(212, 175, 55, 0.3);
+            animation: slideInUp 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 2px solid #d4af37;
+        }
+
+        .bio-section img:hover {
+            transform: scale(1.04);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 35px rgba(212, 175, 55, 0.5);
         }
 
         .bio-section h2 {
             color: #d4af37;
             font-size: 2.5rem;
             margin-bottom: 1rem;
+            animation: glow 2s infinite;
         }
 
         .stats {
@@ -99,18 +223,39 @@
             padding: 1.5rem;
             border-radius: 8px;
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            animation: slideInUp 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-origin: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transition: left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
         }
 
         .stat-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3), 0 0 35px rgba(212, 175, 55, 0.4);
         }
 
         .stat-card h3 {
             font-size: 2rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
+            animation: pulse 2s infinite;
         }
 
         .stat-card p {
@@ -123,12 +268,21 @@
             border-radius: 8px;
             border-left: 4px solid #d4af37;
             margin: 2rem 0;
+            animation: slideInUp 0.8s ease-out;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .achievements:hover {
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.2);
         }
 
         .achievements h2 {
             color: #d4af37;
             font-size: 2rem;
             margin-bottom: 1.5rem;
+            animation: glow 2s infinite;
         }
 
         .achievements ul {
@@ -141,6 +295,13 @@
             margin-bottom: 1rem;
             padding-left: 2rem;
             position: relative;
+            animation: slideInUp 0.8s ease-out;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .achievements li:hover {
+            transform: translateX(12px);
+            color: #f4e4a6;
         }
 
         .achievements li:before {
@@ -148,6 +309,7 @@
             position: absolute;
             left: 0;
             color: #d4af37;
+            animation: rotate 3s linear infinite;
         }
 
         .personality-section {
@@ -156,12 +318,21 @@
             border-radius: 8px;
             border-left: 4px solid #d4af37;
             margin: 2rem 0;
+            animation: slideInUp 0.8s ease-out;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .personality-section:hover {
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.2);
         }
 
         .personality-section h2 {
             color: #d4af37;
             font-size: 2rem;
             margin-bottom: 1.5rem;
+            animation: glow 2s infinite;
         }
 
         .personality-grid {
@@ -175,6 +346,33 @@
             padding: 1.5rem;
             border-radius: 8px;
             border-left: 3px solid #d4af37;
+            animation: slideInUp 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .personality-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .personality-card:hover {
+            transform: translateY(-10px);
+            background: rgba(212, 175, 55, 0.2);
+            box-shadow: 0 12px 28px rgba(212, 175, 55, 0.25);
+        }
+
+        .personality-card:hover::before {
+            opacity: 1;
         }
 
         .personality-card h4 {
@@ -186,6 +384,8 @@
         .personality-card p {
             font-size: 0.95rem;
             line-height: 1.6;
+            position: relative;
+            z-index: 1;
         }
 
         @media (max-width: 768px) {
@@ -203,6 +403,7 @@
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 2rem;
+            animation: glow 2s infinite;
         }
 
         .gallery-container {
@@ -216,12 +417,17 @@
             position: relative;
             overflow: hidden;
             border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            animation: slideInUp 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 2px solid rgba(212, 175, 55, 0);
+            cursor: pointer;
         }
 
         .gallery-item:hover {
-            transform: scale(1.05);
+            transform: scale(1.06) translateY(-12px);
+            box-shadow: 0 20px 45px rgba(212, 175, 55, 0.35), 0 0 50px rgba(212, 175, 55, 0.2);
+            border-color: rgba(212, 175, 55, 0.6);
         }
 
         .gallery-item img {
@@ -229,6 +435,12 @@
             height: 350px;
             object-fit: cover;
             display: block;
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            filter: brightness(1) contrast(1);
+        }
+
+        .gallery-item:hover img {
+            filter: brightness(1.08) contrast(1.05);
         }
 
         .gallery-item-caption {
@@ -236,11 +448,11 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(0, 0, 0, 0.8);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
             color: #d4af37;
             padding: 1rem;
             transform: translateY(100%);
-            transition: transform 0.3s ease;
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             font-weight: bold;
             font-size: 0.95rem;
         }
@@ -255,10 +467,19 @@
             padding: 2rem;
             border-top: 3px solid #d4af37;
             margin-top: 2rem;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 -4px 15px rgba(212, 175, 55, 0.2);
         }
 
         footer p {
             color: #999;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        footer p:hover {
+            color: #d4af37;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
         }
 
         @media (max-width: 768px) {
@@ -328,6 +549,9 @@
                 <p><strong>L'Eredità</strong><br/>
                 Cristiano Ronaldo non è semplicemente passato nella storia del calcio. Ha riscritto le pagine della storia con il suo nome impresso a caratteri d'oro. Ha ispirato milioni di bambini attorno al mondo a inseguire i loro sogni, proprio come ha fatto lui. La sua storia non è finzione - è la prova vivente che con talento, dedizione e mentalità corretta, un ragazzo da un'isola piccola può diventare il più grande del mondo.</p>
             </div>
+            <div style="display: flex; align-items: center; justify-content: center; padding: 1rem;">
+                <img src="images/ritratto-ronny.jpg" alt="Cristiano Ronaldo - Ritratto" style="max-width: 100%; height: auto; object-fit: contain;">
+            </div>
         </section>
 
         <section id="personalita" class="personality-section">
@@ -364,48 +588,38 @@
             <h2>🖼️ La Leggenda in Immagini</h2>
             <div class="gallery-container">
                 <div class="gallery-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Cristiano_Ronaldo_2018.jpg/1024px-Cristiano_Ronaldo_2018.jpg" alt="Cristiano Ronaldo">
-                    <div class="gallery-item-caption">Il Re di Madrid - Real Madrid</div>
+                    <img src="images/juve.jpg" alt="Cristiano Ronaldo">
+                    <div class="gallery-item-caption">Juventus - Il Re della Serie A</div>
                 </div>
 
                 <div class="gallery-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Cristiano_Ronaldo_2019_by_Glenn_Arthur.jpg/1024px-Cristiano_Ronaldo_2019_by_Glenn_Arthur.jpg" alt="Cristiano con la Juventus">
-                    <div class="gallery-item-caption">Vittoria in Serie A - Juventus</div>
+                    <img src="images/gol-decisivo.jpg" alt="Cristiano Ronaldo">
+                    <div class="gallery-item-caption">Goal Decisivo - Maestria Agonistica</div>
                 </div>
 
                 <div class="gallery-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Cristiano_Ronaldo_with_Portugal_Euro_2016.jpg/1024px-Cristiano_Ronaldo_with_Portugal_Euro_2016.jpg" alt="Cristiano con il Portogallo">
-                    <div class="gallery-item-caption">Campione di Euro 2016 - Portogallo</div>
+                    <img src="images/champions.jpg" alt="Cristiano Ronaldo">
+                    <div class="gallery-item-caption">Champions League - Vittoria Europea</div>
                 </div>
 
                 <div class="gallery-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Cristiano_Ronaldo_2008.jpg/1024px-Cristiano_Ronaldo_2008.jpg" alt="Manchester United">
-                    <div class="gallery-item-caption">Inizio della Leggenda - Manchester United</div>
+                    <img src="images/real.jpg" alt="Cristiano Ronaldo">
+                    <div class="gallery-item-caption">Real Madrid - Il Fenomeno</div>
                 </div>
 
                 <div class="gallery-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Cristiano_Ronaldo_-_Portugal_vs._Sweden%2C_11_November_2013_%285%29.jpg/1024px-Cristiano_Ronaldo_-_Portugal_vs._Sweden%2C_11_November_2013_%285%29.jpg" alt="Acrobazia di Cristiano">
-                    <div class="gallery-item-caption">La Spettacolare Acrobazia - Il Suo Stile</div>
+                    <img src="images/real2.jpg" alt="Cristiano Ronaldo">
+                    <div class="gallery-item-caption">Real Madrid Era - Dominio Assoluto</div>
                 </div>
 
                 <div class="gallery-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Real_Madrid_vs_Juventus_-_2017_%281%29.jpg/1024px-Real_Madrid_vs_Juventus_-_2017_%281%29.jpg" alt="Champions League">
-                    <div class="gallery-item-caption">Dominio Europeo - Champions League</div>
+                    <img src="images/euro2k16.jpg" alt="Cristiano Ronaldo">
+                    <div class="gallery-item-caption">Euro 2016 - Campione con il Portogallo</div>
                 </div>
 
                 <div class="gallery-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Cristiano_Ronaldo_Ballon_d%27Or_2017.jpg/1024px-Cristiano_Ronaldo_Ballon_d%27Or_2017.jpg" alt="Pallone d'Oro">
-                    <div class="gallery-item-caption">Pallone d'Oro - Riconoscimento Mondiale</div>
-                </div>
-
-                <div class="gallery-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cristiano_Ronaldo_2021_by_Glenn_Arthur.jpg/1024px-Cristiano_Ronaldo_2021_by_Glenn_Arthur.jpg" alt="Manchester United ritorno">
-                    <div class="gallery-item-caption">Il Ritorno - Finale di Carriera</div>
-                </div>
-
-                <div class="gallery-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Portugal_Euro_2016_celebration.jpg/1024px-Portugal_Euro_2016_celebration.jpg" alt="Vittoria Euro 2016">
-                    <div class="gallery-item-caption">Festa Nazionale - Euro 2016 Vittoria</div>
+                    <img src="images/ritratto-ronny.jpg" alt="Cristiano Ronaldo">
+                    <div class="gallery-item-caption">Il Leggendario CR7 - Ritratto Iconico</div>
                 </div>
                 
                 <div class="gallery-item">
@@ -481,5 +695,145 @@
         <p>&copy; 2026 Cristiano Ronaldo - Pagina Web Dedicata. Celebrando l'eredità di una leggenda.</p>
         <p>⚽ "Talento è di Dio, sii grato. Talento è praticamente come un dono da giocare con." - Cristiano Ronaldo</p>
     </footer>
+
+    <script>
+        // Accoglienza audio all'avvio della pagina
+        document.addEventListener('DOMContentLoaded', () => {
+            const synth = window.speechSynthesis;
+            
+            // Crea un messaggio di benvenuto
+            const utterance = new SpeechSynthesisUtterance('Benvenuto nel sito di Cristiano Ronaldo, il più grande calciatore di tutti i tempi!');
+            utterance.lang = 'it-IT';
+            utterance.rate = 0.9;
+            utterance.pitch = 1;
+            utterance.volume = 1;
+            
+            // Parla il messaggio
+            synth.speak(utterance);
+
+            // Aggiungi un effetto di flash quando la pagina carica
+            const header = document.querySelector('header');
+            header.style.animation = 'slideInDown 1s ease-out';
+        });
+
+        // Effetto parallax sulle immagini della bio - RESO PIÙ FLUIDO
+        let lastX = 0, lastY = 0;
+        let animatingParallax = false;
+        
+        document.addEventListener('mousemove', (e) => {
+            lastX = e.clientX;
+            lastY = e.clientY;
+            
+            if (!animatingParallax) {
+                animatingParallax = true;
+                requestAnimationFrame(() => {
+                    const bioImages = document.querySelectorAll('.bio-section img');
+                    bioImages.forEach(img => {
+                        const rect = img.getBoundingClientRect();
+                        const centerX = rect.left + rect.width / 2;
+                        const centerY = rect.top + rect.height / 2;
+                        
+                        const x = (lastX - centerX) / rect.width;
+                        const y = (lastY - centerY) / rect.height;
+                        
+                        // Ridotto l'effetto per renderlo meno scattosia
+                        const xRotation = y * 5;
+                        const yRotation = x * -5;
+                        
+                        img.style.transform = `perspective(1000px) rotateX(${xRotation}deg) rotateY(${yRotation}deg) scale(1.01)`;
+                    });
+                    animatingParallax = false;
+                });
+            }
+        });
+
+        // Reset del parallax effect quando il mouse esce
+        document.querySelectorAll('.bio-section img').forEach(img => {
+            img.addEventListener('mouseleave', () => {
+                img.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                img.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+            });
+            
+            img.addEventListener('mouseenter', () => {
+                img.style.transition = 'none';
+            });
+        });
+
+        // Effetto di scorrimento fluido
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Effetto di highlight quando raggiungi la sezione
+                    target.style.animation = 'none';
+                    setTimeout(() => {
+                        target.style.animation = 'slideInUp 0.8s ease-out';
+                    }, 10);
+                }
+            });
+        });
+
+        // Animazione di caricamento per gli elementi visibili
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = entry.target.classList.contains('stat-card') 
+                        ? 'slideInUp 0.8s ease-out'
+                        : 'slideInUp 0.8s ease-out';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Osserva tutti gli elementi animabili
+        document.querySelectorAll('.stat-card, .personality-card, .gallery-item, .achievements li').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Effetto di glow su hover per titoli
+        document.querySelectorAll('h2').forEach(h2 => {
+            h2.addEventListener('mouseenter', () => {
+                h2.style.textShadow = '0 0 30px #d4af37, 0 0 60px #f4e4a6';
+            });
+            h2.addEventListener('mouseleave', () => {
+                h2.style.textShadow = '';
+            });
+        });
+
+        // Riproduce un suono di "click" quando interagisci con elementi
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playHoverSound() {
+            const oscillator = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            
+            oscillator.connect(gain);
+            gain.connect(audioContext.destination);
+            
+            oscillator.frequency.value = 800;
+            gain.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.1);
+        }
+
+        // Aggiungi il suono di hover agli elementi interattivi
+        document.querySelectorAll('.stat-card, nav a, .personality-card, .gallery-item').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                if (audioContext.state === 'running') {
+                    playHoverSound();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
